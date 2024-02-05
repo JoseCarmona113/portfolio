@@ -1,9 +1,3 @@
-*{
-  box-sizing: border-box;
-}
-
-@media only screen and (max-width: 600px) {
-}
 
 .body {
   display: flex;
@@ -25,6 +19,13 @@ a {
 
 img {
   cursor: pointer;
+}
+
+.active{
+  background-color: rgb(124, 123, 123);
+  border: #f0f0f0 solid 2px;
+  border-top: solid 2px rgb(16, 16, 16);
+  border-left: solid 2px rgb(16, 16, 16);
 }
 
 /* EXIT BUTTON*/
@@ -201,18 +202,6 @@ hr {
   background-color: #c0c0c0;
 }
 
-.button:active {
-  background-color: #484848;
-  animation: buttons 0.1s linear;
-  
-}
-
-@keyframes buttons {
-  0% {
-    transform: translatey(2px);
-  }
-}
-
 .clock {
   display: flex;
   justify-content: center;
@@ -248,14 +237,6 @@ hr {
   cursor: pointer;
 }
 
-
-#startbutton:focus {
-  background-color: rgb(154, 153, 153);
-  border: #f0f0f0 solid;
-  border-top: solid 3px black;
-  border-left: solid 3px black;
-}
-
 #taskbar-email{
   width:200px;
   height: 28px;
@@ -285,6 +266,20 @@ audio{
   display:none;
 }
 
+@media (max-width:500px){
+ .container{
+   width: 90%;
+   top: 20%;
+   right: 4%;
+ }
+}
+
+@media (min-width:500px){
+  .container{
+    width: 500px;
+  }
+ }
+
 .container {
   display: flex;
   flex-direction: column;
@@ -292,16 +287,13 @@ audio{
   flex-wrap: wrap;
   background-color: #c8c8c8;
   position: absolute;
-  top: 20%;
-  right: 45%;
-  width: 25%;
-  min-width: none;
   height: 314px;
   border: solid;
   overflow: hidden;
   display: none;
   cursor: all-scroll;
 }
+
 
 
 
@@ -401,14 +393,13 @@ audio{
   width: 50%;
   height: 48px;
   box-shadow: inset 3px 3px 0px 1px white, inset -3px -3px 0px 1px #909090;
-  background-color: #33ff33;
+ 
 }
 
 .playbutton {
   background-color: #c8c8c8;
   width: 55%;
   height: 40px;
-  border: solid black;
   box-shadow: inset 0px 3px 5px 1px white, inset 0px -3px 5px 1px #909090;
   outline: none;
   min-width: 0%;
@@ -417,6 +408,9 @@ audio{
   align-items: center;
   flex-wrap: wrap;
 }
+
+
+  
 
 .disk {
   width: 80px;
@@ -435,10 +429,6 @@ audio{
 
 button:hover {
   cursor: pointer;
-}
-
-button:active {
-  background-color: #787878;
 }
 
 .play {
@@ -488,12 +478,24 @@ button:active {
 
 /* Email sender */
 
+@media (max-width:500px){
+  #emailbox{
+    width: 90%;
+    top: 20%;
+    right: 7%;
+  }
+ }
+ 
+ @media (min-width:500px){
+   #emailbox{
+     width: 500px;
+     left: 30%;
+     top: 20%;
+   }
+  }
+
 #emailbox {
   position: absolute;
-  left: 39%;
-  top: 20%;
-  width: 30%;
-  max-width: 100%;
   height: 45%;
   display: flex;
   flex-wrap: wrap;
@@ -605,9 +607,23 @@ button:active {
 
 /*drop down*/
 
+@media(max-width:500px){
+  #dropdown{
+    width: 50% ;
+  }
+
+}
+
+@media(min-width:500px){
+  #dropdown{
+    width: 200px ;
+  }
+
+}
+
+
 #dropdown {
   height: 30%;
-  width: 10%;
   position: absolute;
   bottom: 3%;
   left: 0.50%;
@@ -621,13 +637,28 @@ button:active {
   z-index: 1;
 }
 
+@media(max-width:500px){
+  #accesories{
+    width: 40% ;
+    bottom: 27.80%;
+  left: 50.25%;
+  }
+}
+
+@media(min-width:500px){
+  #accesories{
+    width: 40% ;
+    bottom: 16.80%;
+  left: 205px;
+  }
+}
+
+
 #accesories{
   height: 16%;
-  width: 8%;
+  width: 200px;
   position: absolute;
   color: black;
-  bottom: 28.80%;
-  left: 10.25%;
   border: rgb(38, 38, 38) solid;
   border-top: solid 3px #f0f0f0;
   border-left: solid 3px #f0f0f0;

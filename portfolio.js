@@ -67,6 +67,21 @@ function visualizerStart() {
   }
 }
 
+
+/* player button functions */
+
+function longPress(element){
+  element.classList.toggle('active');
+}
+
+function longPressRemove(...e){
+e.forEach(e =>{
+  if(e.classList.contains('active')){
+    e.classList.remove('active')
+  }
+})
+}
+
 /* Function to stop radio visualizer */
 function visualizerStop() {
   if (visualizer.play) {
@@ -123,6 +138,7 @@ let Player = document.getElementById("player");
 /* MUSIC PLAYER BUTTONS VARIABLES */
 const playButton = document.getElementById("play-button");
 const stopButton = document.getElementById("stop-button");
+const pauseButton = document.getElementById("pause-button");
 
 /* DARKMODE VARIABLES*/
 const darkMode = document.getElementById("darkmode");
@@ -245,6 +261,7 @@ document.addEventListener("mouseup", ()=> {
 /* START-BUTTON EVENT */
 startButton.addEventListener("click", function () {
   toggleElementVisibility(dropDown);
+  longPress(startButton);
 });
 
 /* ICONS EVENTS */
@@ -300,11 +317,22 @@ volumeRange.addEventListener("input", () => {
 playButton.addEventListener("click", () => {
   playRadio();
   visualizerStart();
+  longPress(playButton);
+  longPressRemove(pauseButton,stopButton);
 });
+
+pauseButton.addEventListener("click", ()=>{
+  pauseRadio();
+  visualizerStop();
+  longPress(pauseButton);
+  longPressRemove(playButton,stopButton);
+})
 
 stopButton.addEventListener("click", () => {
   pauseRadio();
   visualizerStop();
+  longPress(stopButton);
+  longPressRemove(playButton,pauseButton);
 });
 
 /* DROPDOWN SPAN EVENTS */
