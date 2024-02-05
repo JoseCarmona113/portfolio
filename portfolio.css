@@ -22,10 +22,10 @@ img {
 }
 
 .active{
-  background-color: rgb(124, 123, 123);
-  border: #f0f0f0 solid 2px;
-  border-top: solid 2px rgb(16, 16, 16);
-  border-left: solid 2px rgb(16, 16, 16);
+  background-color: rgb(154, 153, 153);
+  border: #f0f0f0 solid;
+  border-top: solid 3px black;
+  border-left: solid 3px black;
 }
 
 /* EXIT BUTTON*/
