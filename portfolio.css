@@ -55,14 +55,14 @@ img {
 
 @media (max-width:500px){
   .minimize{
-    right: 8%!important;
+    right: 7%!important;
   }
 }
 
 .minimize{
   margin: 3px;
   position: absolute;
-  right: 7%;
+  right: 5%;
   height: 21px;
   width: 26px;
   border: rgb(16, 16, 16) solid 2px;
@@ -501,6 +501,7 @@ button:hover {
 
 @media (max-width:500px){
   #emailbox{
+    height: 50%;
     width: 90%;
     top: 20%;
     right: 7%;
@@ -512,12 +513,12 @@ button:hover {
      width: 500px;
      left: 30%;
      top: 20%;
+     height: 45%;
    }
   }
 
 #emailbox {
   position: absolute;
-  height: 45%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
