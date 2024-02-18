@@ -18,11 +18,15 @@ function toggleElementVisibility(element) {
 }
 
 /* HIDE FUNCTION*/
-const hideElementVisibility = (element) => {
-  if (element.style.display === "block") {
-    element.style.display = "none";
-  }
+const hideElementVisibility = (...elements) => {
+  elements.forEach((element) =>{
+    if(element.style.display === "block"){
+      element.style.display = "none"
+    }
+  })
 };
+
+
 
 /*DARKMODE FUNCTION */
 const darkModeToggle = (element) => {
@@ -60,6 +64,7 @@ function setVolume(volume) {
   radioPlayer.volume = volume;
 }
 
+
 /* Function to start radio visualizer */
 function visualizerStart() {
   if (visualizer.paused) {
@@ -68,11 +73,48 @@ function visualizerStart() {
 }
 
 
+/* Player timer function */
+function startTimer(...element){
+  element.forEach((element) =>{
+    
+    switch(element){
+      case 'minutes':{
+        timerInterval = setInterval(() =>{
+          timerMinutes.innerHTML++;
+        },60 * 1000);
+      }
+      break;
+
+      case 'seconds' :{
+        timerInterval = setInterval(() =>{
+          timerSeconds.innerHTML++;
+        },1000);
+      }
+      break;
+
+      case 'miliseconds':{
+        timerInterval = setInterval(() =>{
+          timerMiliseconds.innerHTML++;
+        },1);
+        break;
+      }
+    }
+
+  })
+
+}
+
+function stopTimer(){
+  clearInterval(timerInterval);
+}
+
+
 /* player button functions */
 
 function longPress(element){
   element.classList.toggle('active');
 }
+
 
 function longPressRemove(...e){
 e.forEach(e =>{
@@ -100,14 +142,16 @@ function incrementIndexOnClick(element) {
 /* All VARIABLES  */
 
 /* TICTAC-TOE GAME VARIABLES */
-let ticTacContainer = document.getElementById("tictac-container");
+const ticTacContainer = document.getElementById("tictac-container");
 let ticTacSpan = document.getElementById("tictac-span");
+
+let iconDiv = document.querySelector(".icondiv");
 
 /* TIME VARIABLE */
 let time = document.getElementById("current-time");
 
 /* TASKBAR TABS VARIABLES */
-let taskBarEmail = document.getElementById("taskbar-email");
+let taskBarIcon = document.getElementById("taskbar-icon");
 
 /* INDEX INCREMENT VARIABLES */
 let zIndexCounter = 0;
@@ -134,6 +178,12 @@ const radioPlayer = document.getElementById("audio-player");
 /*MUSIC VARIABLES */
 let musicIcon = document.getElementById("musicicon");
 let Player = document.getElementById("player");
+
+/* PLAYER TIMER VARIABLES */
+const timerMinutes = document.getElementById('minutes');
+const timerSeconds = document.getElementById('seconds');
+const timerMiliseconds = document.getElementById('miliseconds');
+
 
 /* MUSIC PLAYER BUTTONS VARIABLES */
 const playButton = document.getElementById("play-button");
@@ -259,21 +309,25 @@ document.addEventListener("mouseup", ()=> {
 /*EVENTS */
 
 /* START-BUTTON EVENT */
-startButton.addEventListener("click", function () {
+startButton.addEventListener("mousedown", function () {
   toggleElementVisibility(dropDown);
   longPress(startButton);
 });
 
 /* ICONS EVENTS */
+iconDiv.addEventListener("click", function () {
+  toggleElementVisibility(taskBarIcon);
+});
+
 musicIcon.addEventListener("click", function () {
-  toggleElementVisibility(Player);
   incrementIndexOnClick(Player);
+  toggleElementVisibility(Player);
 });
 
 emailIcon.addEventListener("click", function () {
   toggleElementVisibility(email);
   incrementIndexOnClick(email);
-  toggleElementVisibility(taskBarEmail);
+  longPress(taskBarEmail);
 });
 
 speakerIcon.addEventListener("click", () =>
@@ -289,7 +343,7 @@ playerExitButton.addEventListener("click", function () {
 
 emailExitButton.addEventListener("click", function () {
   hideElementVisibility(email);
-  hideElementVisibility(taskBarEmail);
+  hideElementVisibility(taskBarIcon);
 });
 
 notePadExit.addEventListener("click", () => hideElementVisibility(notePadBox));
@@ -299,12 +353,15 @@ ticTacExitButton.addEventListener("click", () => hideElementVisibility(ticTacCon
 /*EVENT TO HIDE VOLUME AND DROPDOWN */
 main.addEventListener("click", () => {
   hideElementVisibility(volumeRange);
-  hideElementVisibility(AccesoriesDrop);
-  hideElementVisibility(dropDown);
+  hideElementVisibility(AccesoriesDrop,dropDown);
+  longPressRemove(startButton);
 });
 
 /*DARKMODE BUTTON EVENT */
-darkMode.addEventListener("click", () => darkModeToggle(darkModeContainers));
+darkMode.addEventListener("click", () => {
+darkModeToggle(darkModeContainers);
+longPress(darkMode);
+});
 
 /* VOLUME EVENT*/
 
@@ -314,21 +371,23 @@ volumeRange.addEventListener("input", () => {
 });
 
 /* RADIO BUTTON EVENTS */
-playButton.addEventListener("click", () => {
+playButton.addEventListener("mousedown", () => {
   playRadio();
   visualizerStart();
   longPress(playButton);
   longPressRemove(pauseButton,stopButton);
-});
+  startTimer('minutes','seconds','miliseconds');
+})
 
-pauseButton.addEventListener("click", ()=>{
+pauseButton.addEventListener("mousedown", ()=>{
   pauseRadio();
   visualizerStop();
   longPress(pauseButton);
   longPressRemove(playButton,stopButton);
+  stopTimer();
 })
 
-stopButton.addEventListener("click", () => {
+stopButton.addEventListener("mousedown", () => {
   pauseRadio();
   visualizerStop();
   longPress(stopButton);
@@ -343,58 +402,31 @@ AccesoriesSpan.addEventListener("click", () => {
 
 photoSpan.addEventListener("click", () => {
   toggleElementVisibility(photos);
-  hideElementVisibility(dropDown);
-  hideElementVisibility(AccesoriesDrop);
+  hideElementVisibility(dropDown,AccesoriesDrop);
   incrementIndexOnClick(photos);
+  longPressRemove(startButton);
 });
 
 notePad.addEventListener("click", () => {
   toggleElementVisibility(notePadBox);
-  hideElementVisibility(dropDown);
-  hideElementVisibility(AccesoriesDrop);
+  hideElementVisibility(dropDown,AccesoriesDrop);
   incrementIndexOnClick(notePadBox);
+  longPressRemove(startButton);
 });
 
 bioSpan.addEventListener("click", () => {
   toggleElementVisibility(bio);
-  hideElementVisibility(dropDown);
-  hideElementVisibility(AccesoriesDrop);
+  hideElementVisibility(dropDown,AccesoriesDrop);
   incrementIndexOnClick(bio);
+  longPressRemove(startButton);
 });
 
 ticTacSpan.addEventListener("click", () =>{
   toggleElementVisibility(ticTacContainer);
-  hideElementVisibility(dropDown);
-  hideElementVisibility(AccesoriesDrop);
+  hideElementVisibility(dropDown,AccesoriesDrop);
 });
 
 /* TASKBAR TABS EVENTS */
-taskBarEmail.addEventListener("click", () => {
-  toggleElementVisibility(email);
+taskBarIcon.addEventListener("mousedown", () => {
+  longPress(taskBarIcon);
 });
-
-minimize.addEventListener("click", () => {
-  hideElementVisibility(email);
-  mini(taskBarEmail);
-});
-
-
-function mini(element) {
-  if (
-    element.style.borderTopColor === "" &&
-    element.style.borderLeftColor === "" &&
-    element.style.border === "" &&
-    element.style.backgroundColor === ""
-  ) {
-    element.style.borderTopColor = "#d4d3d3" ;
-      element.style.borderLeftColor = "#d4d3d3" ;
-      element.style.border = "rgb(87, 87, 87)";
-      element.style.backgroundColor = "#c0c0c0"
-  }else {
-    element.style.borderTopColor = "#646464";
-    element.style.borderLeftColor = "#646464";
-    element.style.border = "rgb(225, 225, 225";
-    element.style.backgroundColor = "#d7d4d4"
-  }
-}
-

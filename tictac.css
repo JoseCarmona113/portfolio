@@ -1,4 +1,12 @@
 
+
+@media (max-width:500px){
+  .tictac-container{
+    width: 80%;
+    left: 4%;
+    top: 8%;
+  }
+}
 .tictac-container{
   display: flex;
   flex-direction: column;

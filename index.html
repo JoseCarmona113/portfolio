@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
 
     <link rel="stylesheet" href="portfolio.css"  />
-    <link rel="stylesheet" href="portfolio.css "  />
     <link rel="stylesheet"  href="tictac.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,7 +35,6 @@
         <p>Recycle bin</p>
       </div>
       <div class="icondiv mywork">
-        <a href="portfolio.html">
           <img src="icons/mywork.png" alt="folder-icon" />
         </a>
         <p>My work</p>
@@ -98,9 +96,8 @@
           width="21px"
         />Start
       </button>
-      <div id="taskbar-email" >
+      <div id="taskbar-icon" >
         <img src="icons/email.png" width="20px">
-        Email
       </div>
       <!--Container for CLOCK AND SPEAKER ICON-->
       <div class="clock">
@@ -136,15 +133,17 @@
       <!--this div contains the screen-->
       <div class="seconddiv">
         <div class="screen">
+          <div class="screenheader">
+            <p>min</p>
+            <p>sec</p>
+          </div>
+          <span id="minutes" class="timer minutes">1</span>
+          <span id="seconds" class="timer seconds">1</span>
+          <span id="miliseconds" class="timer miliseconds">1</span>
           <!--visualizer, is inside the screen container-->
           <video id="visualizer" width="100%" muted loop>
             <source src="/videos/2023-11-07 12-46-53 (online-video-cutter.com).mp4" type="video/mp4">
           </video>
-          <div class="screenheader">
-            <p>Track</p>
-            <p>min</p>
-            <p>sec</p>
-          </div>
         </div>
         </div>
 
@@ -307,7 +306,7 @@ Best regards,
     </div>
 
 <!--TIC-TAC-TOE GAME-->
-    <div id="tictac-container" class="tictac-container" >
+    <div id="tictac-container" class="tictac-container">
       <div class="tictac-header" >
         <img src="icons/joystick_alt-0.png" >
         <h5>tic tac toe</h5>
@@ -321,9 +320,6 @@ Best regards,
     </div>
 
     <script type="text/javascript" src="portfolio.js" ></script>
-    <script type="text/javascript" src="tictac.js"></script>
-
-    
-    
+    <script type="text/javascript" src="tictac.js"></script>    
   </body>
 </html>
