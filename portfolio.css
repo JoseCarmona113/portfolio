@@ -55,14 +55,14 @@ img {
 
 @media (max-width:500px){
   .minimize{
-    right: 7%!important;
+    right: 5%!important;
   }
 }
 
 .minimize{
   margin: 3px;
   position: absolute;
-  right: 5%;
+  right: 3%;
   height: 21px;
   width: 26px;
   border: rgb(16, 16, 16) solid 2px;
