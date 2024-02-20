@@ -30,6 +30,7 @@ img {
 }
 
 /* EXIT BUTTON*/
+
 /*this exit button is the same for all containers*/
 .exitbutton {
   margin: 3px;
@@ -55,14 +56,15 @@ img {
 
 @media (max-width:500px){
   .minimize{
-    right: 5%!important;
+    right: 10%!important;
+    width: 3px ;
   }
 }
 
 .minimize{
   margin: 3px;
   position: absolute;
-  right: 3%;
+  right: 8%;
   height: 21px;
   width: 26px;
   border: rgb(16, 16, 16) solid 2px;
